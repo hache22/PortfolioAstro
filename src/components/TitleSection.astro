@@ -1,0 +1,41 @@
+---
+interface Props {
+    class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["flex items-center justify-center gap-4 pb-8", className]}>
+    <slot />
+</div>
+
+<style>
+    h2 {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    /* Optimizaciones para dispositivos móviles */
+    @media (max-width: 640px) {
+        div {
+            text-align: center;
+            padding: 0 1rem;
+        }
+    }
+
+    /* Optimizaciones para tablets */
+    @media (min-width: 641px) and (max-width: 1024px) {
+        div {
+            text-align: center;
+            padding: 0 2rem;
+        }
+    }
+
+    /* Optimizaciones para desktop */
+    @media (min-width: 1025px) {
+        div {
+            text-align: center;
+            padding: 0 3rem;
+        }
+    }
+</style>

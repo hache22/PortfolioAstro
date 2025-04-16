@@ -1,0 +1,165 @@
+---
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+---
+
+<form id="contact-form" class="space-y-6">
+    <div class="space-y-4">
+        <div>
+            <label for="name" class="block text-sm font-medium text-white/80 mb-1">Nombre</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-lg text-white/80 focus:border-yellow-400/50 transition-colors"
+            />
+        </div>
+
+        <div>
+            <label for="email" class="block text-sm font-medium text-white/80 mb-1">Email</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-lg text-white/80 focus:border-yellow-400/50 transition-colors"
+            />
+        </div>
+
+        <div>
+            <label for="message" class="block text-sm font-medium text-white/80 mb-1">Mensaje</label>
+            <textarea
+                id="message"
+                name="message"
+                rows="4"
+                required
+                class="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-lg text-white/80 focus:border-yellow-400/50 transition-colors resize-none"
+            ></textarea>
+        </div>
+
+        <!-- Contenedor para Cloudflare Turnstile -->
+        <div id="turnstile-container" class="flex justify-center"></div>
+    </div>
+
+    <!-- Estado del formulario -->
+    <div id="form-status" class="hidden">
+        <div class="p-4 rounded-md mb-4"></div>
+    </div>
+
+    <button
+        type="submit"
+        class="w-full px-6 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black rounded-lg font-medium hover:shadow-lg hover:shadow-yellow-500/20 transition-all flex items-center justify-center gap-2"
+        disabled
+    >
+        <span id="submit-text">Enviar Mensaje</span>
+        <div id="loading-spinner" class="hidden">
+            <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+        </div>
+    </button>
+</form>
+
+<script define:vars={{ sitekey: TURNSTILE_SITE_KEY }}>
+    // Obtener elementos del DOM
+    const form = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+    const submitButton = form?.querySelector('button[type="submit"]');
+    const spinner = document.getElementById('loading-spinner');
+    const submitText = document.getElementById('submit-text');
+
+    // Configurar Turnstile
+    window.onloadTurnstileCallback = function () {
+        turnstile.render('#turnstile-container', {
+            sitekey: sitekey,
+            theme: 'dark',
+            callback: function() {
+                if (submitButton) {
+                    submitButton.disabled = false;
+                }
+            },
+        });
+    };
+
+    if (form && submitButton) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Deshabilitar botón y mostrar spinner
+            submitButton.disabled = true;
+            if (spinner) spinner.classList.remove('hidden');
+            submitText.textContent = 'Enviando...';
+
+            try {
+                const formData = new FormData(form);
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(Object.fromEntries(formData)),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showStatus('success', '¡Mensaje enviado con éxito!');
+                    form.reset();
+                    turnstile.reset();
+                    submitText.textContent = 'Mensaje Enviado';
+                } else {
+                    showStatus('error', data.message || 'Error al enviar el mensaje');
+                }
+            } catch (error) {
+                showStatus('error', 'Error al enviar el mensaje');
+            } finally {
+                submitButton.disabled = false;
+                if (spinner) spinner.classList.add('hidden');
+            }
+        });
+    }
+
+    function showStatus(type, message) {
+        if (!formStatus) return;
+        
+        const statusDiv = formStatus.querySelector('div');
+        if (!statusDiv) return;
+
+        statusDiv.className = `p-4 rounded-md mb-4 ${
+            type === 'success' ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-100' : 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-100'
+        }`;
+
+        const messageElement = document.createElement('p');
+        messageElement.textContent = message;
+        statusDiv.innerHTML = '';
+        statusDiv.appendChild(messageElement);
+
+        formStatus.classList.remove('hidden');
+
+        setTimeout(() => {
+            formStatus.classList.add('hidden');
+        }, 5000);
+    }
+</script>
+
+<style>
+    input:focus, textarea:focus {
+        outline: none;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .animate-spin {
+        animation: spin 1s linear infinite;
+    }
+
+    /* Estilos para el widget de Turnstile */
+    .cf-turnstile {
+        margin: 1rem 0;
+    }
+</style> 

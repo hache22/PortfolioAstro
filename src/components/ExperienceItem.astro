@@ -1,0 +1,592 @@
+---
+import LinkInline from "./LinkedInLine.astro";
+
+interface Props {
+  title: string;
+  company: string;
+  location: string;
+  description: string;
+  objectives: string;
+  link?: string;
+  link1?: string;
+  date: string;
+  area: string;
+}
+
+const { title, company, location, description, objectives, link, date, area } = Astro.props;
+---
+
+<div class="experience-card group" data-card>
+  <div class="experience-timeline">
+    <div class="timeline-dot"></div>
+    <div class="timeline-line"></div>
+  </div>
+
+  <article class="experience-content">
+    <header class="experience-header">
+      <div class="experience-meta">
+        <time class="experience-date">{date}</time>
+        <span class="experience-location">
+          <svg xmlns="http://www.w3.org/2000/svg" class="location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          {location}
+        </span>
+      </div>
+      
+      <div class="experience-title-container">
+        <h3 class="experience-title">{title}</h3>
+        <h4 class="experience-company">{company}</h4>
+        <span class="experience-area">{area}</span>
+      </div>
+    </header>
+
+    <div class="experience-body">
+      <div class="description-container">
+        <p class="experience-description">{description}</p>
+      </div>
+      
+      <div class="objectives-container">
+        <div class="objectives-header">
+          <svg xmlns="http://www.w3.org/2000/svg" class="objectives-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+          <h5>Responsabilidades/Objetivos</h5>
+        </div>
+
+        <div class="objectives-list">
+          {objectives.split('\n').map((objective, index) => (
+            <div class="objective-item">
+              <span class="objective-number">{index + 1}</span>
+              <p class="objective-text">{objective.trim()}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    {link && (
+      <footer class="experience-footer">
+        <LinkInline
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="recommendations-link"
+        >
+          Recomendaciones
+          <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </LinkInline>
+      </footer>
+    )}
+  </article>
+</div>
+
+<style>
+  /* Contenedor principal */
+  .experience-card {
+    --card-bg: rgba(255, 255, 255, 0.02);
+    --card-border: rgba(255, 255, 255, 0.05);
+    --card-shadow: rgba(0, 0, 0, 0.2);
+    --timeline-color: rgba(234, 179, 8, 0.3);
+    --accent-color: rgb(234, 179, 8);
+    --hover-transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    position: relative;
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    margin: 1rem 0;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    transform-origin: center;
+    transition: all var(--hover-transition);
+    will-change: transform, box-shadow, border-color;
+  }
+
+  .experience-card:hover {
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(234, 179, 8, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.1),
+        0 20px 40px var(--card-shadow);
+  }
+
+  /* Línea de tiempo */
+  .experience-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .timeline-dot {
+    width: 16px;
+    height: 16px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(234, 179, 8, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .timeline-line {
+    position: absolute;
+    top: 24px;
+    width: 2px;
+    height: calc(100% - 24px);
+    background: linear-gradient(180deg, 
+      var(--timeline-color) 0%,
+      rgba(234, 179, 8, 0.05) 100%
+    );
+    transform-origin: top;
+    animation: lineGrow 1s ease-out forwards;
+  }
+
+  .experience-card:hover .timeline-dot {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 6px rgba(234, 179, 8, 0.2);
+  }
+
+  /* Contenido */
+  .experience-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* Encabezado */
+  .experience-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .experience-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .experience-date {
+    padding: 0.25rem 0.75rem;
+    background: rgba(234, 179, 8, 0.1);
+    border-radius: 1rem;
+    font-weight: 500;
+  }
+
+  .experience-location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .location-icon {
+    width: 14px;
+    height: 14px;
+    stroke: var(--accent-color);
+  }
+
+  .experience-title-container {
+    transform-origin: left;
+    animation: slideIn 0.5s ease-out;
+  }
+
+  .experience-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 0.25rem;
+  }
+
+  .experience-company {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .experience-area {
+    font-size: 0.875rem;
+    color: var(--accent-color);
+    opacity: 0.9;
+    font-weight: 500;
+    margin-top: 0.25rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .experience-area::before {
+    content: '•';
+    color: var(--accent-color);
+    opacity: 0.7;
+  }
+
+  /* Cuerpo */
+  .experience-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .description-container {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border-left: 3px solid var(--accent-color);
+    transform-origin: top;
+    animation: fadeIn 0.4s ease-out;
+  }
+
+  .experience-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Objetivos */
+  .objectives-container {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transform-origin: top;
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .objectives-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .objectives-icon {
+    width: 20px;
+    height: 20px;
+    stroke: var(--accent-color);
+  }
+
+  .objectives-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .objective-item {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .objective-item:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .objective-number {
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  .objective-text {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Footer */
+  .experience-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+  }
+
+  .recommendations-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent-color);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    background: rgba(234, 179, 8, 0.1);
+    will-change: transform, gap, background-color;
+  }
+
+  .recommendations-link:hover {
+    gap: 0.75rem;
+    background: rgba(234, 179, 8, 0.15);
+    transform: translateX(4px);
+  }
+
+  .recommendations-link:active {
+    transform: translateX(2px);
+  }
+
+  .arrow-icon {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    stroke-width: 2;
+    transition: transform 0.3s ease;
+  }
+
+  .recommendations-link:hover .arrow-icon {
+    transform: translateX(2px);
+  }
+
+  /* Animaciones */
+  @keyframes lineGrow {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive */
+  @media screen and (max-width: 768px) {
+    .experience-card {
+      grid-template-columns: 20px 1fr;
+      gap: 1rem;
+      padding: 1rem;
+      margin: 0.5rem 0;
+    }
+
+    .experience-title {
+      font-size: 1.125rem;
+      margin-bottom: 0.125rem;
+    }
+
+    .experience-company {
+      font-size: 0.875rem;
+    }
+
+    .experience-area {
+      font-size: 0.75rem;
+    }
+
+    .experience-meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .experience-date {
+      font-size: 0.75rem;
+      padding: 0.125rem 0.5rem;
+    }
+
+    .experience-location {
+      font-size: 0.75rem;
+    }
+
+    .description-container,
+    .objectives-container {
+      padding: 0.75rem;
+    }
+
+    .experience-description,
+    .objective-text {
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .objectives-header h5 {
+      font-size: 0.875rem;
+    }
+
+    .objectives-icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .objective-item {
+      grid-template-columns: 20px 1fr;
+      gap: 0.5rem;
+      padding: 0.25rem;
+    }
+
+    .objective-number {
+      font-size: 0.75rem;
+    }
+
+    .timeline-dot {
+      width: 12px;
+      height: 12px;
+    }
+
+    .timeline-line {
+      width: 1px;
+    }
+  }
+
+  /* Tablets */
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    .experience-card {
+      grid-template-columns: 25px 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+
+    .experience-title {
+      font-size: 1.25rem;
+    }
+
+    .experience-company {
+      font-size: 1rem;
+    }
+
+    .experience-description,
+    .objective-text {
+      font-size: 0.9375rem;
+    }
+  }
+
+  /* Pantallas grandes */
+  @media screen and (min-width: 1025px) {
+    .experience-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .experience-card:hover {
+      transform: translateY(-4px) scale(1.01);
+    }
+  }
+
+  /* Soporte para modo oscuro */
+  @media screen and (prefers-color-scheme: dark) {
+    .experience-card {
+      --card-bg: rgba(0, 0, 0, 0.2);
+      --card-border: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  /* Optimizaciones de rendimiento */
+  @media screen and (prefers-reduced-motion: reduce) {
+    .experience-card,
+    .timeline-line,
+    .experience-title-container,
+    .description-container,
+    .objectives-container {
+      animation: none;
+      transition: none;
+    }
+  }
+
+  /* Soporte para dispositivos de alta densidad */
+  @media screen and (-webkit-min-device-pixel-ratio: 2), 
+         screen and (min-resolution: 192dpi) {
+    .experience-card {
+      backdrop-filter: blur(20px);
+    }
+  }
+
+  /* Efectos de hover avanzados */
+  .experience-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 1rem;
+    padding: 1px;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(234, 179, 8, 0.1) 50%,
+        transparent 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .experience-card:hover::before {
+    opacity: 1;
+  }
+
+  /* Efecto de profundidad optimizado */
+  .experience-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1rem;
+    background: radial-gradient(
+        800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(234, 179, 8, 0.06),
+        transparent 40%
+    );
+    opacity: 0;
+    transition: opacity var(--hover-transition);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .experience-card:hover::after {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  // Optimización del efecto de seguimiento del mouse
+  const cards = document.querySelectorAll('[data-card]');
+  let rafId: number | null = null;
+
+  cards.forEach((card) => {
+    if (card instanceof HTMLElement) {
+      card.addEventListener('mousemove', (e) => {
+        if (e instanceof MouseEvent) {
+          if (rafId !== null) cancelAnimationFrame(rafId);
+          
+          rafId = requestAnimationFrame(() => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+          });
+        }
+      });
+
+      // Limpiar el efecto cuando el mouse sale
+      card.addEventListener('mouseleave', () => {
+        if (rafId !== null) cancelAnimationFrame(rafId);
+        card.style.setProperty('--mouse-x', '50%');
+        card.style.setProperty('--mouse-y', '50%');
+      });
+    }
+  });
+</script>

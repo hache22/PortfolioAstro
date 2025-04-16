@@ -1,0 +1,296 @@
+---
+import TitleSection from "./TitleSection.astro";
+import MessageSquare from "./icons/MessageSquare.astro";
+---
+
+<section id="contacto" class="section scroll-fade mb-20">
+    <TitleSection>
+        <MessageSquare class="size-8 sm:size-10" />
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold">Contacto</h2>
+    </TitleSection>
+    
+    <div class="max-w-3xl mx-auto px-4 py-8">
+        <p class="text-gray-300 text-lg mb-8 text-center">
+            ¿Trabajamos Juntos? Por favor, sirvete a rellenar el siguiente formulario. 
+        </p>
+
+        <form
+            id="contact-form"
+            class="space-y-6 max-w-md mx-auto bg-gray-800/30 p-6 rounded-xl backdrop-blur-sm border border-gray-700/50"
+        >
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="space-y-2 form-group">
+                    <label for="nombre" class="block text-sm font-medium text-gray-300 mb-1 transition-all duration-300">Nombre *</label>
+                    <div class="relative">
+                        <input
+                            type="text"
+                            id="nombre"
+                            name="nombre"
+                            required
+                            minlength="2"
+                            maxlength="50"
+                            pattern="[A-Za-zÁáÉéÍíÓóÚúÑñ\s]+"
+                            class="w-full px-3 py-2 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-white placeholder-gray-400 peer relative z-10"
+                            placeholder="Tu nombre"
+                        />
+                        <div class="absolute inset-0 border-2 border-blue-500 rounded-lg opacity-0 peer-focus:opacity-100 transition-opacity duration-300 -z-10"></div>
+                    </div>
+                    <p class="text-xs text-gray-400 transition-all duration-300">Ingresa tu nombre sin números ni caracteres especiales</p>
+                </div>
+                <div class="space-y-2 form-group">
+                    <label for="apellido" class="block text-sm font-medium text-gray-300 mb-1 transition-all duration-300">Apellido *</label>
+                    <div class="relative">
+                        <input
+                            type="text"
+                            id="apellido"
+                            name="apellido"
+                            required
+                            minlength="2"
+                            maxlength="50"
+                            pattern="[A-Za-zÁáÉéÍíÓóÚúÑñ\s]+"
+                            class="w-full px-3 py-2 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-white placeholder-gray-400 peer relative z-10"
+                            placeholder="Tu apellido"
+                        />
+                        <div class="absolute inset-0 border-2 border-blue-500 rounded-lg opacity-0 peer-focus:opacity-100 transition-opacity duration-300 -z-10"></div>
+                    </div>
+                    <p class="text-xs text-gray-400 transition-all duration-300">Ingresa tu apellido sin números ni caracteres especiales</p>
+                </div>
+            </div>
+            <div class="space-y-2 form-group">
+                <label for="email" class="block text-sm font-medium text-gray-300 mb-1 transition-all duration-300">Correo electrónico *</label>
+                <div class="relative">
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                        class="w-full px-3 py-2 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-white placeholder-gray-400 peer relative z-10"
+                        placeholder="ejemplo@correo.com"
+                    />
+                    <div class="absolute inset-0 border-2 border-blue-500 rounded-lg opacity-0 peer-focus:opacity-100 transition-opacity duration-300 -z-10"></div>
+                </div>
+                <p class="text-xs text-gray-400 transition-all duration-300">Ingresa un correo electrónico </p>
+            </div>
+            <div class="space-y-2 form-group">
+                <label for="empresa" class="block text-sm font-medium text-gray-300 mb-1 transition-all duration-300">Empresa</label>
+                <div class="relative">
+                    <input
+                        type="text"
+                        id="empresa"
+                        name="empresa"
+                        maxlength="100"
+                        class="w-full px-3 py-2 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-white placeholder-gray-400 peer relative z-10"
+                        placeholder="Nombre de tu empresa"
+                    />
+                    <div class="absolute inset-0 border-2 border-blue-500 rounded-lg opacity-0 peer-focus:opacity-100 transition-opacity duration-300 -z-10"></div>
+                </div>
+                <p class="text-xs text-gray-400 transition-all duration-300">Ingresa el nombre de tu empresa (opcional)</p>
+            </div>
+            <div class="space-y-2 form-group">
+                <label for="motivo" class="block text-sm font-medium text-gray-300 mb-1 transition-all duration-300">Motivo de contacto *</label>
+                <div class="relative">
+                    <textarea
+                        id="motivo"
+                        name="motivo"
+                        required
+                        minlength="10"
+                        maxlength="500"
+                        rows="4"
+                        class="w-full px-3 py-2 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-white placeholder-gray-400 resize-none peer relative z-10"
+                        placeholder="Describe el motivo de tu contacto..."
+                    ></textarea>
+                    <div class="absolute inset-0 border-2 border-blue-500 rounded-lg opacity-0 peer-focus:opacity-100 transition-opacity duration-300 -z-10"></div>
+                </div>
+                <p class="text-xs text-gray-400 transition-all duration-300">Ingresa al menos 10 caracteres describiendo el motivo de tu contacto</p>
+            </div>
+            <div id="form-status" class="hidden">
+                <div class="p-4 rounded-md mb-4">
+                    <p class="text-sm"></p>
+                </div>
+            </div>
+            <button
+                type="submit"
+                class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-all duration-300 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98]"
+            >
+                <span class="flex items-center justify-center gap-2">
+                    <span id="submit-text">Enviar</span>
+                    <svg id="loading-spinner" class="hidden animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </span>
+            </button>
+        </form>
+
+        <div class="mt-8 text-center text-gray-400 text-sm">
+            <p>También puedes contactarme directamente a través de:</p>
+            <a href="mailto:horaciolaphitz99@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors duration-300">
+                horaciolaphitz99@gmail.com
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const formStatus = document.getElementById('form-status');
+    const submitButton = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const spinner = document.getElementById('loading-spinner');
+    const submitText = document.getElementById('submit-text');
+
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!submitButton || !spinner || !submitText) return;
+
+            // Deshabilitar el botón y mostrar spinner
+            submitButton.disabled = true;
+            spinner.classList.remove('hidden');
+
+            // Obtener los datos del formulario
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                await fetch('https://formsubmit.co/ajax/horaciolaphitz99@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        ...data,
+                        _subject: 'Nuevo mensaje de contacto desde Portfolio',
+                        _template: 'table',
+                        _captcha: false,
+                        _next: 'https://hache22.github.io/gracias.html'
+                    })
+                });
+
+                // Cambiar el texto del botón
+                submitText.textContent = 'Mensaje enviado';
+                
+                // Limpiar el formulario
+                form.reset();
+
+                // Redirigir a la página de agradecimiento en una nueva pestaña
+                window.open('https://hache22.github.io/gracias.html', '_blank');
+            } catch (error) {
+                // Mostrar mensaje de error
+                showStatus('error', 'Hubo un error al enviar el mensaje. Por favor, intenta nuevamente.');
+                // Restaurar el texto del botón
+                submitText.textContent = 'Enviar';
+            } finally {
+                // Rehabilitar el botón y ocultar spinner
+                submitButton.disabled = false;
+                spinner.classList.add('hidden');
+            }
+        });
+    }
+
+    function showStatus(type: 'success' | 'error', message: string) {
+        if (!formStatus) return;
+
+        const statusDiv = formStatus.querySelector('div');
+        if (!statusDiv) return;
+
+        // Configurar estilos según el tipo de mensaje
+        statusDiv.className = `p-4 rounded-md mb-4 ${
+            type === 'success' 
+                ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-100' 
+                : 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-100'
+        }`;
+
+        // Actualizar el mensaje
+        const messageElement = statusDiv.querySelector('p');
+        if (messageElement) {
+            messageElement.textContent = message;
+        }
+
+        // Mostrar el contenedor de estado
+        formStatus.classList.remove('hidden');
+
+        // Ocultar el mensaje después de 5 segundos
+        setTimeout(() => {
+            formStatus.classList.add('hidden');
+        }, 5000);
+    }
+</script>
+
+<style>
+    .section {
+        scroll-margin-top: 8rem;
+    }
+
+    /* Animación para el formulario */
+    form {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+
+    form:hover {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Animaciones para los inputs */
+    .form-group {
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .form-group:hover label {
+        color: #60a5fa;
+    }
+
+    .form-group:focus-within label {
+        color: #3b82f6;
+        transform: translateY(-2px);
+    }
+
+    input, textarea {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    input:focus, textarea:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+    }
+
+    /* Efecto de brillo en el borde */
+    .peer:focus ~ div {
+        animation: borderGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes borderGlow {
+        from {
+            box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+        }
+        to {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+        }
+    }
+
+    /* Optimizaciones para dispositivos móviles */
+    @media (max-width: 640px) {
+        .section {
+            scroll-margin-top: 6rem;
+        }
+    }
+
+    /* Efecto de escritura suave */
+    input, textarea {
+        caret-color: #60a5fa;
+    }
+
+    /* Efecto de placeholder */
+    input::placeholder, textarea::placeholder {
+        transition: opacity 0.3s ease;
+    }
+
+    input:focus::placeholder, textarea:focus::placeholder {
+        opacity: 0.7;
+    }
+</style> 

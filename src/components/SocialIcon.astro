@@ -1,0 +1,15 @@
+---
+// Componente para íconos sociales accesibles y reutilizables
+const { href, label, children } = Astro.props;
+---
+
+<a
+    href={href}
+    target="_blank"
+    rel="noopener"
+    aria-label={label}
+    role="link"
+    class="text-white/90 hover:text-fuchsia-400 transition-colors duration-300 text-3xl focus:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-400 rounded-full"
+>
+    {children}
+</a>

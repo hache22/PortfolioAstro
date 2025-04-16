@@ -1,0 +1,258 @@
+---
+import Badge from "./Badge.astro";
+import SocialIcon from "./SocialIcon.astro";
+const personalImageAlt =
+    "Retrato profesional de Horacio Laphitz, Analista de Datos y Desarrollador Python";
+
+// Generar posiciones aleatorias para las partículas
+const particles = Array.from({ length: 20 }, () => ({
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    delay: Math.random() * 5,
+    duration: 8 + Math.random() * 4,
+}));
+---
+
+<div
+    class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-gray-900/40 to-black/40"
+>
+    {/* Partículas de fondo */}
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="particles-container" aria-hidden="true">
+            {
+                particles.map((particle, i) => (
+                    <div
+                        class="particle"
+                        style={`left: ${particle.left}%; top: ${particle.top}%; animation-delay: ${particle.delay}s; animation-duration: ${particle.duration}s;`}
+                    />
+                ))
+            }
+        </div>
+    </div>
+
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Indicador de scroll */}
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <div
+                class="w-6 h-10 rounded-full border-2 border-gray-300/30 flex justify-center p-2"
+            >
+                <div
+                    class="w-1.5 h-1.5 rounded-full bg-gray-300/50 animate-scroll"
+                >
+                </div>
+            </div>
+        </div>
+
+        <div class="relative animate-fade-in">
+            <div
+                class="relative flex flex-col lg:flex-row items-center justify-between gap-8 p-8 rounded-2xl bg-white/[0.02] backdrop-blur-sm border border-white/10 hover:bg-white/[0.05] transition-all duration-500"
+            >
+                {/* Columna izquierda: Imagen y Badge */}
+                <div class="relative flex-shrink-0 lg:w-1/3">
+                    <div class="relative group">
+                        <div
+                            class="absolute -inset-1 bg-gradient-to-r from-gray-600/50 to-gray-500/50 rounded-full opacity-75 blur-lg group-hover:opacity-100 transition duration-1000 group-hover:duration-200"
+                        >
+                        </div>
+                        <div
+                            class="relative aspect-square overflow-hidden rounded-full border border-white/20"
+                        >
+                            <img
+                                src="/projects/PERFIL_redimensionado.jpg"
+                                alt={personalImageAlt}
+                                class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110"
+                                loading="eager"
+                            />
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-4 left-1/2 -translate-x-1/2">
+                        <Badge>Disponible</Badge>
+                    </div>
+                </div>
+
+                {/* Columna derecha: Contenido */}
+                <div
+                    class="flex-1 text-center lg:text-left space-y-6 mt-8 lg:mt-0"
+                >
+                    <div class="space-y-2">
+                        <h1
+                            class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tighter bg-gradient-to-r from-white via-gray-200 to-gray-300 text-transparent bg-clip-text animate-gradient-x"
+                        >
+                            Horacio Laphitz
+                        </h1>
+                        <h2
+                            class="text-xl sm:text-2xl lg:text-3xl font-medium text-gray-200/90"
+                        >
+                            Analista de Datos & Desarrollador Python
+                        </h2>
+                        <p
+                            class="text-base sm:text-lg text-gray-100/80 max-w-2xl mx-auto lg:mx-0"
+                        >
+                            <span class="font-bold text-gray-300">3+ años</span>
+                            de experiencia creando soluciones con
+                            <span class="font-bold text-gray-300">Python</span> y
+                            análisis de datos
+                        </p>
+                    </div>
+
+                    {/* Botones de acción */}
+                    <div
+                        class="flex flex-wrap gap-4 justify-center lg:justify-start mt-8"
+                    >
+                        <a
+                            href="#contacto"
+                            class="relative inline-flex group focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
+                        >
+                            <div
+                                class="absolute -inset-0.5 bg-gradient-to-r from-gray-600 to-gray-500 rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"
+                            >
+                            </div>
+                            <button
+                                class="relative px-8 py-3 bg-black/50 backdrop-blur-md rounded-lg leading-none flex items-center"
+                            >
+                                <span
+                                    class="text-gray-200 group-hover:text-gray-100 transition duration-200"
+                                    >¿Trabajamos juntos?</span
+                                >
+                            </button>
+                        </a>
+
+                        <a
+                            href="https://drive.google.com/file/d/1EbXAbxFrdraB4mtvNlXzqV00m9ePxIho/view?usp=sharing"
+                            target="_blank"
+                            rel="noopener"
+                            class="px-8 py-3 bg-white/5 backdrop-blur-sm hover:bg-white/10 border border-white/10 rounded-lg text-white/90 hover:text-white transition-all duration-300"
+                        >
+                            Descargar CV
+                        </a>
+
+                        <a
+                            href="https://drive.google.com/drive/folders/1XRv9ZWegRbOknIgQG1mtivt_4zUy6Y1T?usp=sharing"
+                            target="_blank"
+                            rel="noopener"
+                            class="px-8 py-3 bg-white/5 backdrop-blur-sm hover:bg-white/10 border border-white/10 rounded-lg text-white/90 hover:text-white transition-all duration-300"
+                        >
+                            Certificaciones
+                        </a>
+                    </div>
+
+                    {/* Redes sociales */}
+                    <div
+                        class="flex gap-6 justify-center lg:justify-start mt-8"
+                    >
+                        <SocialIcon
+                            href="https://www.linkedin.com/in/horacio-laphitz/"
+                            label="LinkedIn"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-7 h-7 text-gray-200 hover:text-gray-100 transition duration-300"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                                ></path>
+                            </svg>
+                        </SocialIcon>
+                        <SocialIcon
+                            href="https://github.com/hache22"
+                            label="GitHub"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-7 h-7 text-gray-200 hover:text-gray-100 transition duration-300"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                                ></path>
+                            </svg>
+                        </SocialIcon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes gradient-x {
+        0%,
+        100% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+
+    .animate-gradient-x {
+        animation: gradient-x 15s ease infinite;
+        background-size: 200% 200%;
+    }
+
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-fade-in {
+        animation: fade-in 1s ease-out forwards;
+    }
+
+    @keyframes float {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+
+    .particles-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    .particle {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: rgba(209, 213, 219, 0.5); /* Cambiado a un gris claro */
+        border-radius: 50%;
+        animation: float 8s ease-in-out infinite;
+    }
+
+    .particle:nth-child(odd) {
+        background: rgba(156, 163, 175, 0.5); /* Cambiado a un gris medio */
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        90% {
+            transform: translateY(15px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 0;
+        }
+    }
+
+    .animate-scroll {
+        animation: scroll 2s ease-in-out infinite;
+    }
+</style>

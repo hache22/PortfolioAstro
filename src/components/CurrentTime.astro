@@ -1,0 +1,61 @@
+---
+// Función para verificar disponibilidad basada en la hora local
+export function isAvailable() {
+  // Obtener la hora actual en Argentina (GMT-3)
+  const now = new Date();
+  const argentinaTime = new Date(now.getTime() - (3 * 60 * 60 * 1000));
+  const hours = argentinaTime.getHours();
+  
+  // Considerando horario laboral de 9am a 6pm
+  return hours >= 9 && hours < 18;
+}
+
+// Props para personalización
+const { 
+  showAvailability = true,
+  timeZone = "America/Argentina/Buenos_Aires" 
+} = Astro.props;
+
+// Obtener la hora actual
+const now = new Date();
+
+// Formatear la hora para mostrar
+const formatter = new Intl.DateTimeFormat('es-AR', {
+  timeZone,
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false
+});
+
+const currentTime = formatter.format(now);
+const available = isAvailable();
+---
+
+{showAvailability && (
+  <div class="flex items-center gap-2 text-sm">
+    <span class={`inline-block w-2 h-2 rounded-full ${available ? 'bg-green-500' : 'bg-gray-400'}`}></span>
+    <span class="text-gray-600 dark:text-gray-300">
+      {available ? 'Disponible ahora' : 'No disponible'}
+    </span>
+    <span class="text-gray-400 dark:text-gray-500">• {currentTime} (GMT-3)</span>
+  </div>
+)}
+
+<style>
+  /* Animación de pulso para el indicador de disponibilidad */
+  .bg-green-500 {
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    }
+  }
+</style>

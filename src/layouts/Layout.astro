@@ -1,0 +1,284 @@
+---
+import "@fontsource-variable/onest";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import GradientBackground from "@/components/gradientBackground.astro";
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { description, title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="./projects/iconos/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./projects/iconos/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="./projects/iconos/site.webmanifest"
+		/>
+		<link rel="manifest" href="public/projects/iconos/site.webmanifest" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+		<Header />
+		<div id="background-container">
+			<GradientBackground />
+		</div>
+		<main
+			class="flex-1 flex flex-col items-center justify-center w-full px-4 sm:px-6 md:px-8 lg:px-0 max-w-5xl mx-auto py-8 md:py-12 lg:py-16"
+		>
+			<slot />
+		</main>
+		<Footer />
+		<!-- Start of HubSpot Embed Code -->
+		<script
+			type="text/javascript"
+			id="hs-script-loader"
+			async
+			defer
+			src="//js-na1.hs-scripts.com/48969954.js"></script>
+		<!-- End of HubSpot Embed Code -->
+		<style>
+			/* Estilo para hacer el fondo del iframe del chatbot de HubSpot transparente */
+			iframe[id^="hubspot-messages-iframe-container"] {
+				background: transparent !important;
+			}
+			/* Estilo para hacer el fondo del icono del chatbot de HubSpot transparente */
+			.hubspot-messages-iframe-container iframe {
+				background: transparent !important;
+			}
+		</style>
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		color-scheme: dark;
+		scrollbar-width: thin;
+		scrollbar-color: rgba(234, 179, 8, 0.3) transparent;
+	}
+
+	html {
+		font-family: "Onest Variable", system-ui, sans-serif;
+		scroll-behavior: smooth;
+		scroll-padding-top: 2rem;
+	}
+
+	/* Estilos personalizados para la barra de desplazamiento */
+	::-webkit-scrollbar {
+		width: 8px;
+		height: 8px;
+	}
+
+	::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: rgba(234, 179, 8, 0.3);
+		border-radius: 4px;
+		transition: background-color 0.3s ease;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		background: rgba(234, 179, 8, 0.5);
+	}
+
+	body {
+		color: rgba(255, 255, 255, 0.9);
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+		overscroll-behavior: none;
+		scroll-behavior: smooth;
+		background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+	}
+
+	main {
+		width: 100%;
+		max-width: 80rem;
+		margin: 0 auto;
+		padding: 2rem 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	@media (max-width: 1024px) {
+		main {
+			max-width: 100%;
+			padding: 1.5rem 0.5rem;
+		}
+	}
+
+	@media (max-width: 640px) {
+		main {
+			padding: 1rem 0.25rem;
+			gap: 1rem;
+		}
+	}
+
+	/* Animaciones de scroll */
+	@media (prefers-reduced-motion: no-preference) {
+		html {
+			scroll-behavior: smooth;
+		}
+
+		.smooth-scroll {
+			scroll-behavior: smooth;
+			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+
+		.scroll-fade {
+			opacity: 0;
+			transform: translateY(20px);
+			transition:
+				opacity 0.6s ease-out,
+				transform 0.6s ease-out;
+		}
+
+		.scroll-fade.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	/* Optimizaciones para dispositivos móviles */
+	@media screen and (max-width: 600px) {
+		.mi-elemento {
+			font-size: 14px;
+			margin: 10px;
+		}
+
+		::-webkit-scrollbar {
+			width: 6px;
+			height: 6px;
+		}
+	}
+
+	/* Optimizaciones para tablets */
+	@media screen and (min-width: 601px) and (max-width: 1024px) {
+		::-webkit-scrollbar {
+			width: 8px;
+			height: 8px;
+		}
+	}
+
+	/* Optimizaciones para desktop */
+	@media screen and (min-width: 1025px) {
+		::-webkit-scrollbar {
+			width: 10px;
+			height: 10px;
+		}
+	}
+
+	/* Optimizaciones para dispositivos que prefieren reducir el movimiento */
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+
+		.smooth-scroll,
+		.scroll-fade {
+			transition: none;
+		}
+	}
+
+	#header-nav {
+		animation: blur linear both 0.5s;
+		animation-timeline: scroll();
+		animation-range: 0 500px;
+		backdrop-filter: blur(10px);
+		background-color: rgba(17, 24, 39, 0.8);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
+		transition: all 0.3s ease;
+	}
+
+	@keyframes blur {
+		to {
+			backdrop-filter: blur(20px);
+			border-width: 1px;
+			border-color: rgba(255, 255, 255, 0.2);
+			padding: 0.25rem 0.75rem;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			background-color: rgba(17, 24, 39, 0.9);
+			border-radius: 9999px;
+		}
+	}
+
+	/* Optimizaciones para dispositivos móviles */
+	@media (max-width: 640px) {
+		#header-nav {
+			padding: 0.5rem 1rem;
+			font-size: 0.875rem;
+		}
+	}
+
+	/* Optimizaciones para tablets */
+	@media (min-width: 641px) and (max-width: 1024px) {
+		#header-nav {
+			padding: 0.75rem 1.5rem;
+			font-size: 1rem;
+		}
+	}
+
+	/* Optimizaciones para dispositivos que prefieren reducir el movimiento */
+	@media (prefers-reduced-motion: reduce) {
+		#header-nav {
+			animation: none;
+			transition: none;
+		}
+	}
+
+	/* Estilos para el contenedor de fondo */
+	#background-container {
+		position: fixed;
+		inset: 0;
+		z-index: -1;
+	}
+</style>
+
+<script>
+	// Animación de scroll suave para elementos con la clase scroll-fade
+	const observerOptions = {
+		root: null,
+		rootMargin: "0px",
+		threshold: 0.1,
+	};
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add("visible");
+			}
+		});
+	}, observerOptions);
+
+	document.addEventListener("DOMContentLoaded", () => {
+		const scrollElements = document.querySelectorAll(".scroll-fade");
+		scrollElements.forEach((element) => observer.observe(element));
+	});
+</script>

@@ -1,0 +1,103 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SobreMi from "../components/About.astro";
+import SectionContainer from "../components/SectionContainer.astro";
+import Experiencia from "../components/Experience.astro";
+import BriefCase from "../components/icons/BriefCase.astro";
+import Code from "../components/icons/Code.astro";
+import Projects from "../components/Projects.astro";
+import Hero from "@/components/Hero.astro";
+import TitleSection from "@/components/TitleSection.astro";
+import ProfileCheck from "../components/icons/ProfileCheck.astro";
+import Contact from "../components/Contact.astro";
+
+// Preload de recursos críticos
+const preloadResources = [
+    { href: "./projects/colab.png", as: "image" },
+    { href: "./projects/dash2.png", as: "image" },
+    { href: "./projects/Dash1 (1).jpg", as: "image" }
+];
+---
+
+<Layout title="Horacio Laphitz" description="Porfolio Horacio Laphitz">
+    <!-- Preload de recursos críticos -->
+    {
+        preloadResources.map(resource => (
+            <link rel="preload" href={resource.href} as={resource.as} />
+        ))
+    }
+
+    <main class="px-4">
+        <SectionContainer class="py-16 md:py-44">
+            <Hero />
+        </SectionContainer>
+        <div class="space-y-24 sm:space-y-32 lg:space-y-36">
+            <SectionContainer id="experiencia" class="text-center">
+                <TitleSection>
+                    <BriefCase class="size-8 sm:size-10" />
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold">Experiencia</h2>
+                </TitleSection>
+                <Experiencia />
+            </SectionContainer>
+            <SectionContainer id="proyectos" class="text-center">
+                <TitleSection>
+                    <Code class="size-8 sm:size-10" />
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold">Proyectos</h2>
+                </TitleSection>
+            </SectionContainer>
+            <Projects />
+            <SectionContainer id="sobre-mi" class="text-center">
+                <TitleSection>
+                    <ProfileCheck class="size-8 sm:size-10" />
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold">Sobre Mí</h2>
+                </TitleSection>
+                <SobreMi />
+            </SectionContainer>
+            <Contact />
+        </div>
+    </main>
+</Layout>
+
+<style>
+    /* Optimizaciones de rendimiento */
+    main {
+        contain: content;
+        will-change: transform;
+    }
+
+    /* Optimización de scroll */
+    @media (prefers-reduced-motion: no-preference) {
+        main {
+            scroll-behavior: smooth;
+        }
+    }
+
+    /* Optimización de renderizado */
+    .space-y-24 > * {
+        contain: content;
+        will-change: transform;
+    }
+
+    /* Optimizaciones para títulos en móviles */
+    @media (max-width: 640px) {
+        h2 {
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+    }
+
+    /* Optimizaciones para títulos en tablets */
+    @media (min-width: 641px) and (max-width: 1024px) {
+        h2 {
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+    }
+
+    /* Optimizaciones para títulos en desktop */
+    @media (min-width: 1025px) {
+        h2 {
+            line-height: 1.4;
+        }
+    }
+</style>

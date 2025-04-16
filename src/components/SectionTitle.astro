@@ -1,0 +1,22 @@
+---
+interface Props {
+    class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["mb-12", className]}>
+    <h2 class="text-3xl md:text-4xl font-bold text-white relative inline-block">
+        <slot />
+        <span class="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-transparent rounded-full"></span>
+    </h2>
+</div>
+
+<style>
+    @media (max-width: 768px) {
+        .text-3xl {
+            font-size: 1.875rem;
+        }
+    }
+</style> 

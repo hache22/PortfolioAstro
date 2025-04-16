@@ -1,0 +1,87 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+const EXPERIENCE = [
+  {
+    date: "abr. 2024 - dic. 2024",
+    title: "Data Entry Operator",
+    company: "Ucrop.it", 
+    location: "Remoto",
+    area: "Área de Data ",
+    description: `Carga de datos basada en imágenes satelitales.
+    
+    Detección avanzada de patrones y zonas cultivables mediante análisis 
+    detallado de historiales de cultivos.`,
+    
+    objectives: `Implementacion protocolos de detección para áreas deforestadas y terrenos cultivables.
+    Cumplimiento de normativas en seguridad de los datos: GDPR y CCPA.
+    Carga de Datos con excel.`,
+    link: "https://www.linkedin.com/in/horacio-laphitz/details/recommendations/",
+  },
+  {
+    date: "jul. 2019 - nov. 2019",
+    title: "Trainer",
+    company: "Hospital Escuela de Agudos Dr. Ramón Madariaga",
+    location: "Posadas, Misiones",
+    area: "Área de Informática - Capacitación",
+    description: `Líder de equipo de capacitación; especializado en optimización de procesos hospitalarios 
+    mediante metodologías Eisenhower y S.M.A.R.T. 
+    
+    Implementación de técnicas avanzadas de evaluación 
+    y seguimiento del rendimiento del personal.`,
+    
+    objectives: `Recorté 60% tiempos de adaptación de la historia clínica.
+    Implementacion exitosa del Registro Integral de Salud Misiones (R.I.S.Mi) en toda la capital de la provincia.
+    Logré cobertura del 55% en C.A.P.S de Posadas, cumpliendo con las metas esperadas.`,
+  },
+  {
+    date: "mar. 2019 - jun. 2019",
+    title: "Administrativo Contable",
+    company: "Ministerio de Salud Pública",
+    location: "Posadas, Misiones",
+    area: "Área de Cuentas Especiales",
+    description: `Gestión integral de sistemas de datos y optimización de procesos administrativos
+    en el sector de salud pública. 
+    
+    Implementación de protocolos avanzados de control de calidad y gestión integral 
+    de registros sanitarios a nivel provincial.`,
+    
+    objectives: `Mejora en precisión registral al 90%.
+    Eliminé 75% errores procesamiento datos.
+    Gestion Efectiva de Expedientes financieros.`,
+  },
+];
+---
+
+<div class="relative px-4 sm:px-6 lg:px-8">
+  <div class="text-center mb-6 sm:mb-8 scroll-fade">
+    <a 
+      href="https://www.linkedin.com/in/horacio-laphitz/details/experience/" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 text-2xl sm:text-3xl font-bold text-yellow-400/90 tracking-wide hover:text-yellow-400 transition-colors duration-300 group"
+    >
+      Linkedin
+      <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        class="w-5 h-5 sm:w-6 sm:h-6 transform transition-transform duration-300 group-hover:translate-x-1" 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="2" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+      >
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+  <ol class="relative mt-8 sm:mt-12 lg:mt-16 text-left">
+    {
+      EXPERIENCE.map((experience, index) => (
+        <li class="mb-2 sm:mb-12 last:mb-0 scroll-fade" style={`transition-delay: ${index * 0.2}s`}>
+          <ExperienceItem {...experience} />
+        </li>
+      ))
+    }
+  </ol>
+</div>

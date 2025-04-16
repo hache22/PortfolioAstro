@@ -1,0 +1,139 @@
+---
+interface BackgroundStrategy {
+    class: string;
+    particlesConfig: any;
+}
+
+const backgroundStrategies: Record<string, BackgroundStrategy> = {
+    default: {
+        class: "bg-transparent backdrop-blur-sm",
+        particlesConfig: {
+            particles: {
+                number: {
+                    value: 50,
+                    density: { enable: true, value_area: 1000 },
+                },
+                color: { value: ["#6d28d9", "#db2777", "#fde047"] },
+                opacity: {
+                    value: 0.15,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 0.5,
+                        opacity_min: 0.05,
+                        sync: false,
+                    },
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: { enable: true, speed: 2, size_min: 1, sync: false },
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#a855f7",
+                    opacity: 0.1,
+                    width: 1,
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                },
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "bubble" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true,
+                },
+                modes: {
+                    bubble: {
+                        distance: 200,
+                        size: 4,
+                        duration: 2,
+                        opacity: 0.2,
+                        speed: 3,
+                    },
+                    push: { particles_nb: 3 },
+                },
+            },
+            retina_detect: true,
+        },
+    },
+};
+
+const currentStrategy = backgroundStrategies.default;
+---
+
+<div class="fixed inset-0 -z-10">
+    <div class={`absolute inset-0 ${currentStrategy.class}`} aria-hidden="true">
+        <div id="particles-js" class="absolute inset-0"></div>
+    </div>
+</div>
+
+<script define:vars={{ particlesConfig: currentStrategy.particlesConfig }}>
+    // Cargar particles.js solo si no está ya cargado
+    if (!window.particlesJS) {
+        const script = document.createElement("script");
+        script.src =
+            "https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js";
+        script.onload = () => initParticles();
+        document.head.appendChild(script);
+    } else {
+        initParticles();
+    }
+
+    function initParticles() {
+        if (window.particlesJS) {
+            window.particlesJS("particles-js", particlesConfig);
+        }
+    }
+</script>
+
+<style>
+    /* Asegurar que el fondo sea totalmente transparente */
+    :root {
+        --background-alpha: 0;
+    }
+
+    #particles-js {
+        pointer-events: none;
+    }
+
+    /* Optimizaciones para diferentes dispositivos */
+    @supports (backdrop-filter: blur()) {
+        .backdrop-blur-sm {
+            backdrop-filter: blur(8px);
+        }
+    }
+
+    /* Prevenir parpadeo en la carga inicial */
+    #particles-js {
+        opacity: 0;
+        animation: fadeIn 0.5s ease-in forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Optimizaciones para dispositivos de alto rendimiento */
+    @media (min-resolution: 2dppx) {
+        #particles-js {
+            transform: translateZ(0);
+            will-change: transform;
+        }
+    }
+</style>

@@ -1,0 +1,479 @@
+---
+import Python from "../components/icons/Python.astro";
+import PowerBI from "../components/icons/PowerBI.astro";
+import Tableau from "../components/icons/Tableau.astro";
+import JupyterNotebook from "../components/icons/JupyterNotebook.astro";
+import IA from "./icons/AI.astro";
+import Brain from "./icons/Brain.astro";
+import Analisis from "./icons/Analisis.astro";
+import Informe from "./icons/Histograma.astro";
+import R from "./icons/R.astro";
+import SectionTitle from "./SectionTitle.astro";
+
+const TAGS = {
+    Python: {
+        name: "Python",
+        class: "bg-[#3776AB]/30 text-white border-[#3776AB]/40 hover:bg-[#3776AB]/40 shadow-[#3776AB]/20 font-medium",
+        icon: Python,
+    },
+    JupyterNotebook: {
+        name: "Jupyter Notebook",
+        class: "bg-[#F37626]/30 text-white border-[#F37626]/40 hover:bg-[#F37626]/40 shadow-[#F37626]/20 font-medium",
+        icon: JupyterNotebook,
+    },
+    ai: {
+        name: "Machine Learning",
+        class: "bg-[#FF6B6B]/30 text-white border-[#FF6B6B]/40 hover:bg-[#FF6B6B]/40 shadow-[#FF6B6B]/20 font-medium",
+        icon: IA,
+    },
+    RedesNeuronales: {
+        name: "Deep Learning",
+        class: "bg-[#FF3B30]/30 text-white border-[#FF3B30]/40 hover:bg-[#FF3B30]/40 shadow-[#FF3B30]/20 font-medium",
+        icon: Brain,
+    },
+    AnalisisDatos: {
+        name: "Análisis de Datos",
+        class: "bg-[#2196F3]/30 text-white border-[#2196F3]/40 hover:bg-[#2196F3]/40 shadow-[#2196F3]/20 font-medium",
+        icon: Analisis,
+    },
+    Estadistica: {
+        name: "Estadística",
+        class: "bg-[#4CAF50]/30 text-white border-[#4CAF50]/40 hover:bg-[#4CAF50]/40 shadow-[#4CAF50]/20 font-medium",
+        icon: Informe,
+    },
+    R: {
+        name: "Markdown",
+        class: "bg-[#2B5B84]/30 text-white border-[#2B5B84]/40 hover:bg-[#2B5B84]/40 shadow-[#2B5B84]/20 font-medium",
+        icon: R,
+    },
+    Tableau: {
+        name: "Tableau",
+        class: "bg-[#E97627]/30 text-white border-[#E97627]/40 hover:bg-[#E97627]/40 shadow-[#E97627]/20 font-medium",
+        icon: Tableau,
+    },
+    PowerBI: {
+        name: "Power BI",
+        class: "bg-[#F2C811]/30 text-white border-[#F2C811]/40 hover:bg-[#F2C811]/40 shadow-[#F2C811]/20 font-medium",
+        icon: PowerBI,
+    },
+};
+
+const projects: Project[] = [
+    {
+        title: "Todos Proyectos",
+        link: "https://drive.google.com/drive/folders/14Z-Fjip99FTPIrtPyxsgPXIu4VRGN77c?usp=sharing",
+        github: "",
+        description: `Colección completa de proyectos de análisis de datos y machine learning en Google Colab`,
+        tags: [
+            TAGS.Python,
+            TAGS.JupyterNotebook,
+            TAGS.AnalisisDatos,
+            TAGS.Estadistica,
+        ],
+        image: "./projects/colab.png",
+        isAllProjects: true,
+    },
+    {
+        title: "Dashboard de Terremotos Ocurridos en 2024",
+        link: "https://public.tableau.com/views/DashboardTerremotos2024enescalademagnitud/Dashboard1?:language=es-ES&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
+        github: "",
+        description: `Visualización interactiva que mapea la actividad sísmica global de 2024, ofreciendo insights sobre patrones y magnitudes.`,
+        tags: [TAGS.AnalisisDatos, TAGS.Estadistica, TAGS.Tableau],
+        image: "./projects/dash2.png",
+    },
+    {
+        title: "Dashboard de Segmentación de Clientes",
+        link: "https://drive.google.com/file/d/1OtkeIt7_O-r6OVUHRrBnrNZ8BsSFVgz6/view?usp=sharing",
+        github: "",
+        description: `Análisis dinámico de patrones de consumo y segmentación de clientes para optimizar estrategias comerciales.`,
+        tags: [TAGS.AnalisisDatos, TAGS.Estadistica, TAGS.PowerBI],
+        image: "./projects/Dash1 (1).jpg",
+    },
+    {
+        title: "Informe Analítico de Datos",
+        link: "https://drive.google.com/file/d/1YlbcVzBRQ5VPUmMdw42wVI5TcxjwMQj4/view?usp=drive_link",
+        github: "",
+        description: `Estudio detallado de patrones de uso del servicio de bicicletas Divvy, revelando insights para optimización operativa.`,
+        tags: [TAGS.R, TAGS.AnalisisDatos, TAGS.Estadistica],
+        image: "./projects/graficos2.png",
+    },
+    {
+        title: "Análisis de Datos: Probabilidad de Cáncer",
+        link: "",
+        github: "https://github.com/hache22/cancer_issue",
+        description: `Modelo predictivo que analiza factores clave para estimar probabilidades de supervivencia en pacientes oncológicos.`,
+        tags: [TAGS.Python, TAGS.AnalisisDatos, TAGS.JupyterNotebook],
+        image: "./projects/p13.png",
+    },
+    {
+        title: "Análisis Exploratorio de Datos - IBM",
+        link: "",
+        github: "https://github.com/hache22/EDA_IBM",
+        description: `Investigación profunda de factores de deserción laboral en IBM, identificando patrones y proponiendo soluciones.`,
+        tags: [TAGS.AnalisisDatos, TAGS.Estadistica, TAGS.Python],
+        image: "./projects/p14.png",
+    },
+    {
+        title: "Ingeniería de Datos con Python",
+        description: `Pipeline ETL que transforma datos económicos globales en insights accionables, optimizando el proceso de análisis.`,
+        link: "",
+        github: "https://github.com/hache22/ETL?tab=readme-ov-file",
+        image: "./projects/p12.png",
+        tags: [TAGS.Python, TAGS.AnalisisDatos],
+    },
+    {
+        title: "Predicción del Precio de Acciones",
+        description: `Sistema de machine learning que analiza tendencias históricas para predecir movimientos en el mercado bursátil.`,
+        link: "",
+        github: "https://github.com/hache22/PredicePrecioAcciones",
+        image: "./projects/p11.png",
+        tags: [TAGS.Python, TAGS.AnalisisDatos],
+    },
+    {
+        title: "Análisis de Datos: Warriors Games",
+        description: `Evaluación estadística del rendimiento de los Golden State Warriors, revelando patrones en juegos locales y visitantes.`,
+        link: "",
+        github: "https://github.com/hache22/Warriors-Games",
+        image: "./projects/p2.png",
+        tags: [TAGS.Python, TAGS.JupyterNotebook],
+    },
+    {
+        title: "Modelo de Regresión Lineal",
+        description: `Implementación elegante de regresión lineal para conversión automática entre escalas de temperatura.`,
+        link: "",
+        github: "https://github.com/hache22/Regresion_Lineal",
+        image: "./projects/p3.png",
+        tags: [TAGS.Python, TAGS.ai],
+    },
+    {
+        title: "Deep Learning - GANs",
+        description: `Sistema de redes neuronales que genera datos sintéticos realistas mediante arquitectura GAN.`,
+        link: "",
+        github: "https://github.com/hache22/Redes-Generativas-Adversariales",
+        image: "./projects/p4.png",
+        tags: [TAGS.Python, TAGS.RedesNeuronales],
+    },
+    {
+        title: "AutoEncoder de Imágenes",
+        description: `Arquitectura de autoencoder que aprende y reconstruye características esenciales de imágenes.`,
+        link: "",
+        github: "https://github.com/hache22/Autoencoder",
+        image: "./projects/p5.png",
+        tags: [TAGS.Python, TAGS.JupyterNotebook, TAGS.RedesNeuronales],
+    },
+    {
+        title: "Redes Neuronales Convolucionales - CNN",
+        description: `Implementación de CNN para reconocimiento de imágenes, optimizada con TensorFlow.`,
+        link: "",
+        github: "https://github.com/hache22/Redes-Convolucionales",
+        image: "./projects/p6.png",
+        tags: [TAGS.Python, TAGS.JupyterNotebook, TAGS.RedesNeuronales],
+    },
+    {
+        title: "Transferencia de Aprendizaje",
+        description: `Adaptación de modelos preentrenados para clasificación eficiente de imágenes personalizadas.`,
+        link: "",
+        github: "https://github.com/hache22/PrediccionImagenes",
+        image: "./projects/p7.png",
+        tags: [TAGS.Python, TAGS.JupyterNotebook, TAGS.ai],
+    },
+    {
+        title: "Árbol de Decisión - Titanic",
+        description: `Análisis predictivo de supervivencia en el Titanic utilizando Random Forest y técnicas avanzadas.`,
+        link: "",
+        github: "https://github.com/hache22/TITANIC-Arbol_de_Decision",
+        image: "./projects/p8.png",
+        tags: [TAGS.Python, TAGS.JupyterNotebook, TAGS.AnalisisDatos],
+    },
+    {
+        title: "Clustering en Mercado Inmobiliario",
+        description: `Segmentación inteligente de compradores en California mediante análisis de clusters.`,
+        link: "",
+        github: "https://github.com/hache22/PrediccionImagenes",
+        image: "./projects/p9.png",
+        tags: [TAGS.Python, TAGS.JupyterNotebook, TAGS.ai],
+    },
+];
+
+const categories = [
+    { id: "all", name: "Todos" },
+    { id: "business-intelligence", name: "Business Intelligence" },
+    { id: "machine-learning", name: "Machine Learning" },
+    { id: "data-engineering", name: "Data Engineering" },
+];
+
+interface ProjectTag {
+    name: string;
+    class: string;
+    icon: (props: Record<string, any>) => any;
+}
+
+interface Project {
+    title: string;
+    description: string;
+    tags: ProjectTag[];
+    image: string;
+    link: string;
+    github?: string;
+    category?: string;
+    isAllProjects?: boolean;
+}
+
+// Función para categorizar proyectos
+function getProjectCategory(project: Project): string {
+    const hasAnalisisDatosTag = project.tags.some(
+        (tag) => tag.name === "Análisis de Datos",
+    );
+    const hasMLTags = project.tags.some((tag) =>
+        [TAGS.ai.name, TAGS.RedesNeuronales.name].includes(tag.name),
+    );
+
+    if (hasMLTags)
+        return (
+            categories.find((c) => c.id === "machine-learning")?.name ||
+            "Machine Learning"
+        );
+    if (hasAnalisisDatosTag)
+        return (
+            categories.find((c) => c.id === "data-analysis")?.name ||
+            "Data Analysis"
+        );
+    return (
+        categories.find((c) => c.id === "data-analysis")?.name ||
+        "Data Analysis"
+    );
+}
+
+// Categorizar los proyectos
+const categorizedProjects: Project[] = projects.map((project) => ({
+    ...project,
+    category: getProjectCategory(project),
+}));
+
+// Simplificar la carga de datos
+const repoData = projects.map(() => null);
+
+// Obtener tags únicos para el filtrado
+const uniqueTags = Object.values(TAGS);
+---
+
+<section id="proyectos" class="py-24 relative">
+    <!-- Decoración de fondo -->
+    <div
+        class="absolute inset-0 bg-gradient-to-b from-black/0 via-yellow-500/5 to-black/0 pointer-events-none"
+    >
+    </div>
+
+    <div class="container max-w-6xl mx-auto px-4">
+        <!-- Filtros por Tags -->
+        <div class="flex flex-wrap gap-3 mb-12" id="filters">
+            <button
+                data-tag="all"
+                class="px-4 py-2 rounded-full text-sm font-medium transition-all filter-btn bg-yellow-400 text-black"
+            >
+                Todos
+            </button>
+            {
+                uniqueTags.map((tag) => (
+                    <button
+                        data-tag={tag.name}
+                        class:list={[
+                            "filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2",
+                            tag.class,
+                        ]}
+                    >
+                        <tag.icon class="size-4" />
+                        {tag.name}
+                    </button>
+                ))
+            }
+        </div>
+
+        <!-- Grid de Proyectos -->
+        <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            id="projects-grid"
+        >
+            {
+                projects.map((project) => (
+                    <article
+                        data-tags={project.tags
+                            .map((tag) => tag.name)
+                            .join(",")}
+                        class="group bg-black/30 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 transition-all hover:border-yellow-400/50 project-card"
+                    >
+                        <div class="relative aspect-video overflow-hidden">
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                class="w-full h-full object-cover transition-transform group-hover:scale-105"
+                                loading="lazy"
+                            />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">
+                                {project.title}
+                            </h3>
+                            <p class="text-white/70 text-sm mb-4">
+                                {project.description}
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                {project.tags.map((tag) => (
+                                    <button
+                                        class:list={[
+                                            "filter-tag px-2 py-1 rounded-full text-xs flex items-center gap-1 transition-all",
+                                            tag.class,
+                                        ]}
+                                        data-tag={tag.name}
+                                    >
+                                        <tag.icon class="size-3" />
+                                        {tag.name}
+                                    </button>
+                                ))}
+                            </div>
+                            <div class="flex items-center gap-4">
+                                {project.link && (
+                                    <a
+                                        href={project.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="inline-flex items-center gap-2 text-sm text-white/60 hover:text-yellow-400 transition-colors"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="size-4"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                        >
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                            <polyline points="15 3 21 3 21 9" />
+                                            <line
+                                                x1="10"
+                                                y1="14"
+                                                x2="21"
+                                                y2="3"
+                                            />
+                                        </svg>
+                                        <span>Ver Demo</span>
+                                    </a>
+                                )}
+                                {project.github && (
+                                    <a
+                                        href={project.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="inline-flex items-center gap-2 text-sm text-white/60 hover:text-yellow-400 transition-colors"
+                                    >
+                                        <svg
+                                            class="size-4"
+                                            viewBox="0 0 24 24"
+                                            fill="currentColor"
+                                        >
+                                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                                        </svg>
+                                        <span>Ver Código</span>
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    section {
+        scroll-margin-top: 6rem;
+    }
+
+    .project-card {
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .project-card.hidden {
+        display: none;
+        opacity: 0;
+        transform: translateY(20px);
+        pointer-events: none;
+    }
+
+    .filter-btn,
+    .filter-tag {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-tag:hover {
+        transform: translateY(-1px);
+    }
+
+    .filter-btn.active {
+        transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 0 1rem;
+        }
+    }
+</style>
+
+<script>
+    // Filtrado de proyectos por tags
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const projectCards = document.querySelectorAll(".project-card");
+    const filterTags = document.querySelectorAll(".filter-tag");
+
+    function filterProjects(selectedTag: string): void {
+        projectCards.forEach((card: Element) => {
+            const cardTags = (card.getAttribute("data-tags") || "").split(",");
+            if (selectedTag === "all" || cardTags.includes(selectedTag)) {
+                card.classList.remove("hidden");
+            } else {
+                card.classList.add("hidden");
+            }
+        });
+    }
+
+    function updateActiveButton(clickedButton: HTMLElement): void {
+        filterButtons.forEach((btn: Element) => {
+            btn.classList.remove("bg-yellow-400", "text-black");
+            if (btn !== clickedButton) {
+                btn.classList.add("opacity-70");
+            }
+        });
+        clickedButton.classList.add("bg-yellow-400", "text-black");
+        clickedButton.classList.remove("opacity-70");
+    }
+
+    // Event listeners para los botones de filtro
+    filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const selectedTag = button.getAttribute("data-tag");
+            updateActiveButton(button as HTMLElement);
+            filterProjects(selectedTag || "all");
+        });
+    });
+
+    // Event listeners para los tags en las cards
+    filterTags.forEach((tag) => {
+        tag.addEventListener("click", () => {
+            const selectedTag = tag.getAttribute("data-tag");
+            const correspondingButton = Array.from(filterButtons).find(
+                (btn) => btn.getAttribute("data-tag") === selectedTag,
+            );
+            if (correspondingButton) {
+                updateActiveButton(correspondingButton as HTMLElement);
+                filterProjects(selectedTag || "all");
+            }
+        });
+    });
+</script>

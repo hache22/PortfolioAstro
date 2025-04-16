@@ -1,0 +1,24 @@
+---
+const { class: className } = Astro.props;
+---
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    class={className}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+>
+    <!-- Rectángulo base para Power BI -->
+    <rect x="2" y="2" width="20" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    
+    <!-- Letra P -->
+    <path d="M6.5,6.5 h3 a2,2 0 0,1 0,4 h-3 z" fill="currentColor"/>
+    <path d="M6.5,6.5 v11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Barras de gráfico (BI) -->
+    <rect x="12" y="14" width="2" height="3.5" fill="currentColor"/>
+    <rect x="15" y="12" width="2" height="5.5" fill="currentColor"/>
+    <rect x="18" y="10" width="2" height="7.5" fill="currentColor"/>
+    
+    <!-- Línea superior del logo -->
+    <path d="M12,6.5 h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg>
